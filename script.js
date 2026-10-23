@@ -61,12 +61,12 @@ I'm sorry, ${HIS_NAME}. When you're ready, I want to listen, understand, and mak
   // Replace the src values with your actual photo paths (e.g. "images/our-photo-1.jpg")
   // Leave the placeholder emoji and gradient for photos you haven't added yet.
   galleryPhotos: [
-    { src: 'images/wp1.jpeg', caption: 'One of my favorite days with you ♡', gradient: 'linear-gradient(135deg,#fce4ec,#e91e63)', emoji: '📸' },
-    { src: 'images/wp2.jpeg', caption: 'I keep coming back to this memory ♡', gradient: 'linear-gradient(135deg,#f8bbd0,#c2185b)', emoji: '💕' },
-    { src: 'images/wp3.jpeg', caption: 'You looked so beautiful here ♡',      gradient: 'linear-gradient(135deg,#ffe0ec,#ad1457)', emoji: '🌸' },
-    { src: 'images/wp5.jpeg', caption: 'This moment made me so happy ♡',      gradient: 'linear-gradient(135deg,#fce4ec,#880e4f)', emoji: '✨' },
-    { src: 'images/wp6.jpeg', caption: 'Us, always ♡',                        gradient: 'linear-gradient(135deg,#ffd6e0,#c2185b)', emoji: '🫀' },
-    { src: 'images/wp4.jpeg', caption: 'I Love You, Prabirr ♡',                        gradient: 'linear-gradient(135deg,#ffd6e0,#c2185b)', emoji: '💞' },
+    { src: 'wp1.jpeg', caption: 'One of my favorite days with you ♡', gradient: 'linear-gradient(135deg,#fce4ec,#e91e63)', emoji: '📸' },
+    { src: 'wp2.jpeg', caption: 'I keep coming back to this memory ♡', gradient: 'linear-gradient(135deg,#f8bbd0,#c2185b)', emoji: '💕' },
+    { src: 'wp3.jpeg', caption: 'You looked so beautiful here ♡',      gradient: 'linear-gradient(135deg,#ffe0ec,#ad1457)', emoji: '🌸' },
+    { src: 'wp5.jpeg', caption: 'This moment made me so happy ♡',      gradient: 'linear-gradient(135deg,#fce4ec,#880e4f)', emoji: '✨' },
+    { src: 'wp6.jpeg', caption: 'Us, always ♡',                        gradient: 'linear-gradient(135deg,#ffd6e0,#c2185b)', emoji: '🫀' },
+    { src: 'wp4.jpeg', caption: 'I Love You, Prabirr ♡',                        gradient: 'linear-gradient(135deg,#ffd6e0,#c2185b)', emoji: '💞' },
   ],
 
   // Path to your background music file
