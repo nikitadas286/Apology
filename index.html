@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A heartfelt apology, made with love — just for you." />
+  <title>Sorry Dear ♡</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ─── SCROLL PROGRESS ─────────────────────────────────────────── -->
+  <div id="scroll-progress" role="progressbar" aria-label="Page scroll progress"></div>
+
+  <!-- ─── MUSIC TOGGLE ───────────────────────────────────────────── -->
+  <button id="music-toggle" class="floating-btn" aria-label="Toggle background music" title="Toggle music">
+    <svg id="music-icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+    </svg>
+    <svg id="music-icon-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+      <rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>
+    </svg>
+  </button>
+  <audio id="bg-music" loop>
+    <!-- Replace 'music/your-song.mp3' with your audio file path -->
+    <source src="WhatsApp-Audio-2026-10-23-at-3.50.04-PM.mp3" type="audio/mp3" />
+  </audio>
+
+  <!-- ─── BACK TO TOP ─────────────────────────────────────────────── -->
+  <button id="back-to-top" class="floating-btn" aria-label="Back to top" title="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+  <!-- ─── PARTICLES CANVAS (floating hearts/stars) ────────────────── -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 1 · HERO                                              -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section id="hero" class="section hero-section" aria-label="Hero">
+    <div class="hero-bg-blur" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow reveal-stagger" aria-hidden="true">a little something, just for you ✦</p>
+
+      <h1 class="hero-headline reveal-stagger">
+        Hey, My Favorite Prabir<span class="heartbeat-inline">♡</span>
+      </h1>
+
+      <p class="hero-subtext reveal-stagger">
+        I know I may have hurt you, and I wish I could take that moment back.<br class="br-desktop"/>
+        So I made something little — <em>just for you.</em>
+      </p>
+
+      <!-- Animated heart -->
+      <div class="hero-heart-wrap reveal-stagger" aria-hidden="true">
+        <div class="hero-heart" id="hero-heart">
+          <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="hg" cx="50%" cy="40%" r="60%">
+                <stop offset="0%" stop-color="#f9c0cb"/>
+                <stop offset="60%" stop-color="#d4567a"/>
+                <stop offset="100%" stop-color="#8b1a3a"/>
+              </radialGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <path d="M50 85 C20 65 5 45 5 28 C5 13 16 4 28 4 C37 4 46 10 50 17 C54 10 63 4 72 4 C84 4 95 13 95 28 C95 45 80 65 50 85Z" fill="url(#hg)" filter="url(#glow)"/>
+          </svg>
+          <div class="hero-heart-glow" aria-hidden="true"></div>
+        </div>
+        <div class="floating-particles" id="hero-particles" aria-hidden="true"></div>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="hero-ctas reveal-stagger">
+        <button id="btn-open-heart" class="btn btn-primary" aria-label="Open my heart and read the letter">
+          Open My Heart 💌
+        </button>
+        <button id="btn-still-listening" class="btn btn-ghost" aria-label="I'm still listening message">
+          I'm Still Listening 🥺
+        </button>
+      </div>
+    </div>
+
+    <!-- Decorative floating elements -->
+    <div class="deco-floats" aria-hidden="true">
+      <span class="deco-petal" style="--d:0s;--x:10%;--s:.7">🌸</span>
+      <span class="deco-petal" style="--d:1.2s;--x:85%;--s:.55">🌸</span>
+      <span class="deco-petal" style="--d:2.4s;--x:25%;--s:.8">🌸</span>
+      <span class="deco-petal" style="--d:0.6s;--x:70%;--s:.6">🌸</span>
+      <span class="deco-petal" style="--d:3s;--x:50%;--s:.45">✦</span>
+      <span class="deco-star" style="--d:0.4s;--x:15%;--y:20%">✦</span>
+      <span class="deco-star" style="--d:1.8s;--x:80%;--y:35%">✦</span>
+      <span class="deco-star" style="--d:0.9s;--x:60%;--y:15%">✦</span>
+    </div>
+
+    <!-- Scroll cue -->
+    <a href="#love-letter" class="scroll-cue" aria-label="Scroll down">
+      <span class="scroll-cue-dot"></span>
+    </a>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 2 · LOVE LETTER (ENVELOPE)                            -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section id="love-letter" class="section letter-section" aria-label="Love letter">
+    <div class="section-header scroll-reveal">
+      <p class="section-eyebrow">words from my heart</p>
+      <h2 class="section-title">A Letter For You</h2>
+    </div>
+
+    <div class="envelope-wrap scroll-reveal" id="envelope-wrap">
+      <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Click to open the love letter" aria-expanded="false">
+        <!-- Envelope body -->
+        <div class="env-body">
+          <div class="env-flap" id="env-flap" aria-hidden="true"></div>
+          <div class="env-front" aria-hidden="true">
+            <div class="env-seal">
+              <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M20 35 C10 27 3 20 3 13 C3 7 8 3 13 3 C16.5 3 19.5 5 20 7.5 C20.5 5 23.5 3 27 3 C32 3 37 7 37 13 C37 20 30 27 20 35Z" fill="#d4567a"/>
+              </svg>
+            </div>
+            <p class="env-hint">tap to open ♡</p>
+          </div>
+        </div>
+
+        <!-- Letter (hidden until envelope opens) -->
+        <div class="letter" id="letter" aria-live="polite">
+          <div class="letter-inner">
+            <div class="letter-decoration" aria-hidden="true">✦ ✦ ✦</div>
+            <p class="letter-salutation">My love,</p>
+            <div class="letter-body" id="letter-body"></div>
+            <p class="letter-sign">With all my love,<br/><span class="letter-sign-name" id="letter-sign-name"></span></p>
+            <div class="letter-decoration letter-decoration-bottom" aria-hidden="true">♡</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="envelope-instruction" id="env-hint-outer" aria-live="polite">Click the envelope to open ♡</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 3 · THINGS I LOVE ABOUT YOU                           -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section id="love-about" class="section love-about-section" aria-label="Things I love about you">
+    <div class="section-header scroll-reveal">
+      <p class="section-eyebrow">because you deserve to know</p>
+      <h2 class="section-title">Things I Love About You</h2>
+    </div>
+
+    <div class="love-cards-grid" id="love-cards-grid">
+      <!-- Cards injected by JS -->
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 4 · OUR LITTLE UNIVERSE                               -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section id="universe" class="section universe-section" aria-label="Our little universe">
+    <canvas id="stars-canvas" aria-hidden="true"></canvas>
+
+    <div class="universe-content scroll-reveal">
+      <p class="section-eyebrow" style="color:var(--cream-soft)">our little corner</p>
+      <h2 class="universe-title">Our Little Universe</h2>
+      <p class="universe-subtitle">
+        If I could make one wish right now, it would be to see<br class="br-desktop"/>
+        that beautiful smile of yours again.
+      </p>
+
+      <div class="universe-heart-wrap">
+        <button class="universe-heart" id="universe-heart" aria-label="Click to reveal a romantic message">
+          <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <radialGradient id="uhg" cx="50%" cy="40%" r="60%">
+                <stop offset="0%" stop-color="#ffd0dc"/>
+                <stop offset="55%" stop-color="#e8738a"/>
+                <stop offset="100%" stop-color="#b5294e"/>
+              </radialGradient>
+            </defs>
+            <path d="M50 85 C20 65 5 45 5 28 C5 13 16 4 28 4 C37 4 46 10 50 17 C54 10 63 4 72 4 C84 4 95 13 95 28 C95 45 80 65 50 85Z" fill="url(#uhg)"/>
+          </svg>
+        </button>
+        <p class="universe-heart-hint">tap the heart ♡</p>
+        <div class="romantic-msg-box" id="romantic-msg-box" aria-live="polite" role="status">
+          <p id="romantic-msg-text"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 5 · APOLOGY BUTTON                                     -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section id="apology-moment" class="section apology-moment-section" aria-label="Apology moment">
+    <div class="section-header scroll-reveal">
+      <p class="section-eyebrow">no pressure, I promise</p>
+      <h2 class="section-title">Can I Have a Little Moment of Your Time? 🥹</h2>
+    </div>
+
+    <div class="apology-center scroll-reveal">
+      <button id="btn-tap-ready" class="btn btn-primary btn-large" aria-label="Tap if you're ready">
+        Tap if you're ready 💗
+      </button>
+    </div>
+
+    <!-- Apology Popup -->
+    <div id="apology-popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-title" aria-hidden="true">
+      <div class="popup-card">
+        <button class="popup-close" id="popup-close" aria-label="Close message">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+        <div class="popup-heart" aria-hidden="true">♡</div>
+        <h3 id="popup-title" class="popup-title">Thank you for giving me a moment.</h3>
+        <p class="popup-body">
+          I won't ask you to forget how you feel. I just hope we can talk when you're ready.<br/><br/>
+          You matter to me Prabir Cutipie🥹. ♡
+        </p>
+        <div class="popup-deco" aria-hidden="true">✦ ✦ ✦</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 6 · TINY SURPRISE                                      -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section id="surprise" class="section surprise-section" aria-label="Tiny surprise">
+    <div class="section-header scroll-reveal">
+      <p class="section-eyebrow">a little something extra</p>
+      <h2 class="section-title">A Tiny Surprise for You 🎁</h2>
+    </div>
+
+    <div class="surprise-center scroll-reveal">
+      <div class="gift-box-wrap" id="gift-box-wrap" aria-label="Gift box" role="img">
+        <div class="gift-box" id="gift-box">
+          <div class="gift-lid" id="gift-lid">
+            <div class="gift-bow" aria-hidden="true"></div>
+          </div>
+          <div class="gift-body" aria-hidden="true">
+            <div class="gift-ribbon-h" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <button id="btn-surprise" class="btn btn-primary btn-large" aria-label="Open your tiny surprise">
+        Open Your Surprise 🎁
+      </button>
+
+      <div class="surprise-note" id="surprise-note" aria-live="polite">
+        <p class="surprise-note-text" id="surprise-note-text"></p>
+      </div>
+
+      <button id="btn-replay-surprise" class="btn btn-ghost" aria-label="Replay the surprise" style="display:none">
+        Replay ✨
+      </button>
+    </div>
+
+    <!-- Confetti container -->
+    <div id="confetti-container" aria-hidden="true"></div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 7 · MEMORY GALLERY                                     -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section id="gallery" class="section gallery-section" aria-label="Our memory gallery">
+    <div class="section-header scroll-reveal">
+      <p class="section-eyebrow">moments I never want to forget</p>
+      <h2 class="section-title">Our Memory Gallery</h2>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid">
+      <!-- Photo cards injected by JS -->
+    </div>
+  </section>
+
+  <!-- ─── LIGHTBOX ──────────────────────────────────────────────── -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close photo viewer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <div class="lightbox-img-wrap">
+        <img id="lightbox-img" src="" alt="" />
+        <div id="lightbox-placeholder" class="lightbox-placeholder" aria-hidden="true"></div>
+      </div>
+      <p id="lightbox-caption" class="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 8 · FINAL / CLOSING                                    -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section id="closing" class="section closing-section" aria-label="Closing message">
+    <canvas id="closing-stars" aria-hidden="true"></canvas>
+
+    <div class="closing-content scroll-reveal">
+      <div class="closing-heart-wrap" aria-hidden="true">
+        <div class="closing-heart-pulse">♡</div>
+      </div>
+
+      <blockquote class="closing-quote">
+        I'm not asking you to forget what happened.<br/>
+        I'm asking for the chance to understand, learn,<br class="br-desktop"/>
+        and love you better.
+      </blockquote>
+
+      <p class="closing-sub">
+        No matter how this moment feels, your feelings matter to me.<br/>
+        When you're ready, I'd love to hear you. ♡
+      </p>
+
+      <button id="btn-hug" class="btn btn-primary btn-large" aria-label="Send a virtual hug">
+        One Little Hug? 🫂
+      </button>
+
+      <div class="hug-reveal" id="hug-reveal" aria-live="polite">
+        <div class="hug-illustration" aria-hidden="true">
+          <div class="hug-hearts">
+            <span class="hug-h hug-h1">♡</span>
+            <span class="hug-h hug-h2">♡</span>
+            <span class="hug-h hug-h3">♡</span>
+          </div>
+          <div class="hug-arms">🫂</div>
+        </div>
+        <p class="hug-message">
+          Sending you the biggest, warmest virtual hug.<br/>
+          Take all the time you need. I love you. ♡
+        </p>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>Made with ♡ &nbsp;·&nbsp; just for you</p>
+    </footer>
+  </section>
+
+  <!-- ─── "Still Listening" inline reveal ─────────────────────────── -->
+  <div id="still-listening-overlay" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="sl-title" aria-hidden="true">
+    <div class="popup-card">
+      <button class="popup-close" id="sl-close" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div class="popup-heart" aria-hidden="true">🥺</div>
+      <h3 id="sl-title" class="popup-title">I'm still here.</h3>
+      <p class="popup-body">
+        I'm not going anywhere. Whenever you're ready to talk, to vent, or just to sit in silence — I'm here. Your feelings are valid, and you don't have to rush anything. ♡
+      </p>
+      <div class="popup-deco" aria-hidden="true">✦ ✦ ✦</div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
